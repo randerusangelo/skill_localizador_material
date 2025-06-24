@@ -20,10 +20,7 @@ def buscar_localizacao(material_nome):
             
         SELECT 
             E.nome,
-            L.setor,
-            L.andar,
-            L.coluna,
-            L.prateleira      
+            L.setor  
         FROM produtos as E
             left join localizacoes L on E.localizacao_id = L.id
             WHERE E.nome LIKE ?
@@ -34,8 +31,8 @@ def buscar_localizacao(material_nome):
 
         if rows:
             resposta = f"Encontrei {len(rows)} item(ns):\n"
-            for nome, setor, andar, coluna, prateleira  in rows:
-                resposta += (f"- {nome} está no setor {setor}, no andar {andar}, coluna {coluna} e prateleira {prateleira} \n")
+            for nome, setor in rows:
+                resposta += (f"- {nome} está no setor {setor} \n")
             return resposta
         else:
             return "Desculpe, não encontrei esse material no sistema."

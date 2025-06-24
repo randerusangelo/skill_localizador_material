@@ -8,7 +8,8 @@ def build_response(text, end_session=True):
     return {
         "version":"1.0",
         "response":{
-            "outputSpeech": {"type": "PlainText", "text": text},
+            "outputSpeech": {"type": "SSML", 
+                             "ssml":f"<speak>{text} <break time='2s'/> Deseja buscar outro material? </speak>"},
             "shouldEndSession": end_session
         }
     }
@@ -37,12 +38,18 @@ def alexa_webhook():
                 return jsonify(build_response(
                     "Não entendi o material. Pode repetir?", end_session=False))
                 
-            resposta = buscar_localizacao(material)
-            return jsonify(build_response(resposta))
+            try:
+                resposta = buscar_localizacao(material)
+                #resposta += " Deseja buscar outro material?"
+                return jsonify(build_response(resposta, end_session=False))
+            except Exception as e:
+                print(traceback.format_exc())
+                return jsonify(build_response(
+                    "Ocorreu um erro ao buscar o material.", end_session=False))
 
-        return jsonify(build_response("Desculpe, não suportado."))
+        return jsonify(build_response("Desculpe, não entendi o pedido.", end_session=False))
 
-    return jsonify(build_response("Desculpe, não entendi"))        
+    return jsonify(build_response("Requisição não suportada.", end_session=True))      
 
 if __name__ == "__main__":
     # debug=True opcional para desenvolvimento
