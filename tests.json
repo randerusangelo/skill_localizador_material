@@ -1,0 +1,42 @@
+{
+  "session": {
+    "new": true,
+    "sessionId": "SessionId.1234567890",
+    "application": {
+      "applicationId": "amzn1.ask.skill.63b6eff1-421c-46ba-8a2f-e62c96e1a608"
+    },
+    "user": {
+      "userId": "amzn1.ask.account.testUser"
+    }
+  },
+  "context": {
+    "System": {
+      "application": {
+        "applicationId": "amzn1.ask.skill.63b6eff1-421c-46ba-8a2f-e62c96e1a608"
+      },
+      "user": {
+        "userId": "amzn1.ask.account.testUser"
+      },
+      "device": {
+        "deviceId": "string",
+        "supportedInterfaces": {}
+      }
+    }
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.1234567890",
+    "timestamp": "2025-06-23T10:00:00Z",
+    "locale": "pt-BR",
+    "intent": {
+      "name": "ConsultaMaterialIntent",
+      "slots": {
+        "material": {
+          "name": "material",
+          "value": "tesoura"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
