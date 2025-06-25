@@ -30,9 +30,14 @@ def buscar_localizacao(material_nome):
         conn.close()
 
         if rows:
-            resposta = f"Encontrei {len(rows)} item(ns):\n"
-            for nome, setor in rows:
-                resposta += (f"- {nome} está no setor {setor} \n")
+            resposta = f"Encontrei {len(rows)} iten"
+            resposta += "s" if len(rows) > 1 else ""
+            resposta += ": "
+
+            for row in rows:
+                nome, setor = row
+                resposta += f"{nome} está no setor {setor}. <break time='1s'/> "
+
             return resposta
         else:
             return "Desculpe, não encontrei esse material no sistema."

@@ -9,7 +9,7 @@ def build_response(text, end_session=True):
         "version":"1.0",
         "response":{
             "outputSpeech": {"type": "SSML", 
-                             "ssml":f"<speak>{text} <break time='2s'/> Deseja buscar outro material? </speak>"},
+                             "ssml":f"<speak>{text}</speak>"},
             "shouldEndSession": end_session
         }
     }
@@ -40,12 +40,24 @@ def alexa_webhook():
                 
             try:
                 resposta = buscar_localizacao(material)
-                #resposta += " Deseja buscar outro material?"
+                resposta += "<break time='2s' />  Deseja buscar outro material?"
                 return jsonify(build_response(resposta, end_session=False))
             except Exception as e:
                 print(traceback.format_exc())
                 return jsonify(build_response(
                     "Ocorreu um erro ao buscar o material.", end_session=False))
+        
+        elif intent_name in ['AMAZON.CancelIntent', 'AMAZON.StopIntent']:
+            return jsonify({
+                "version": "1.0",
+                "response": {
+                    "outputSpeech": {
+                        "type": "PlainText",
+                        "text": "Ok, até a próxima!"
+                    },
+                    "shouldEndSession": True
+                }
+            })
 
         return jsonify(build_response("Desculpe, não entendi o pedido.", end_session=False))
 
