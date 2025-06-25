@@ -40,7 +40,7 @@ def alexa_webhook():
                 
             try:
                 resposta = buscar_localizacao(material)
-                resposta += "<break time='2s' />  Deseja buscar outro material?"
+                resposta += "<break time='0.5s' />  Deseja buscar outro material?"
                 return jsonify(build_response(resposta, end_session=False))
             except Exception as e:
                 print(traceback.format_exc())

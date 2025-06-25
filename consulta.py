@@ -36,7 +36,7 @@ def buscar_localizacao(material_nome):
 
             for row in rows:
                 nome, setor = row
-                resposta += f"{nome} está no setor {setor}. <break time='1s'/> "
+                resposta += f"{nome} está no setor {setor}. <break time='0.5s'/> "
 
             return resposta
         else:
