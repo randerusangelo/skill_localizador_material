@@ -2,8 +2,8 @@
 echo Ativando ambiente virtual...
 call venv\Scripts\activate.bat
 
-echo Iniciando servidor Flask (app.py) em nova janela...
-start cmd /k python app.py
+echo Iniciando servidor Flask (app.py)
+python C:\Users\pedro\Desktop\skill_localizador_material-main\app.py
 
 timeout /t 3 >nul
 
