@@ -14,6 +14,11 @@ def build_response(text, end_session=True):
         }
     }
 
+@app.route('/health', methods=['GET'])
+def health_check():
+    return 'OK', 200
+
+
 @app.route('/alexa', methods=['POST'])
 def alexa_webhook():
     payload = request.get_json(force=True, silent=True)
